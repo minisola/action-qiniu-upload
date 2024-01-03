@@ -9,7 +9,8 @@ function normalizePath(input: string): string {
 }
 
 export function upload(
-  token: string,
+  bucket:string,
+  mac:any,
   srcDir: string,
   destDir: string,
   ignoreSourceMap: boolean,
@@ -30,6 +31,14 @@ export function upload(
     if (ignoreSourceMap && file.endsWith('.map')) return null;
 
     const task = (): Promise<any> => new Promise((resolve, reject) => {
+
+
+      const options = {
+        scope: `${bucket}:${key}`
+      }
+      const putPolicy = new qiniu.rs.PutPolicy(options)
+      const token = putPolicy.uploadToken(mac)
+      
       const putExtra = new qiniu.form_up.PutExtra();
       uploader.putFile(token, key, file, putExtra, (err, body, info) => {
         if (err) return reject(new Error(`Upload failed: ${file}`));

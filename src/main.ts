@@ -1,6 +1,8 @@
 import * as core from '@actions/core';
 import { genToken } from './token';
 import { upload } from './upload';
+import qiniu from 'qiniu';
+
 
 async function run(): Promise<void> {
   try {
@@ -13,8 +15,12 @@ async function run(): Promise<void> {
 
     const token = genToken(bucket, ak, sk);
 
+    const mac = new qiniu.auth.digest.Mac(ak, sk)
+
+
     upload(
-      token,
+      bucket,
+      mac,
       sourceDir,
       destDir,
       ignoreSourceMap,
