@@ -1,6 +1,6 @@
 import qiniu from "qiniu";
 import path from "path";
-import glob from "glob";
+import {globSync} from "glob";
 import pAll from "p-all";
 import pRetry from "p-retry";
 
@@ -19,7 +19,7 @@ export function upload(
   onFail: (errorInfo: any) => void
 ): void {
   const baseDir = path.resolve(process.cwd(), srcDir);
-  const files = glob.sync(`${baseDir}/**/*`, { nodir: true });
+  const files = globSync(`${baseDir}/**/*`, { nodir: true });
 
   const config = new qiniu.conf.Config();
   const uploader = new qiniu.form_up.FormUploader(config);
