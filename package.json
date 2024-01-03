@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hujiulong/action-qiniu-upload.git"
+    "url": "git+https://github.com/minisola/action-qiniu-upload.git"
   },
   "keywords": [
     "actions",
     "node",
     "setup"
   ],
-  "author": "Jiulong Hu <me@hujiulong.com>",
+  "author": "minisola",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.2.0",

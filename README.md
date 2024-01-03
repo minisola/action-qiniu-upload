@@ -1,3 +1,7 @@
+# fork information
+forked from https://github.com/hujiulong/action-qiniu-upload
+升级了依赖修复`DeprecationWarning`错误，**默认覆盖上传**
+
 # Github Action for Uploading Files to Qiniu
 
 This is a action for uploading files to [Qiniu](https://qiniu.com).
@@ -19,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - uses: hujiulong/action-qiniu-upload@master
+    - uses: minisola/action-qiniu-upload@master
       with:
         # Your qiniu access key, required.
         access_key: ${{ secrets.QINIU_ACCESS_KEY }}
